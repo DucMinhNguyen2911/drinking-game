@@ -1,32 +1,38 @@
-import * as React from 'react';
+import { AccountCircle } from '@mui/icons-material';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import MenuIcon from '@mui/icons-material/Menu';
+import WineBarIcon from '@mui/icons-material/WineBar';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { authActions } from '../_store';
-import { useState } from 'react';
-import { AccountCircle } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import { history } from '../_helpers';
-import { Link } from 'react-router-dom';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 export { Navbar };
-const pages = ['Products', 'Pricing', 'Blog'];
+let pages = [
+    {
+        id: 1,
+        title: 'Play',
+        link: '/sets',
+    },
+    {
+        id: 2,
+        title: 'Pricing',
+        link: '/pricing',
+    },
+];
 
 function Navbar() {
     const dispatch = useDispatch();
-    const authUser = useSelector(x => x.auth.user);
+    const authUser = useSelector((x) => x.auth.user);
     const logout = () => dispatch(authActions.logout());
 
     const navigate = useNavigate();
@@ -54,29 +60,35 @@ function Navbar() {
     //if (!authUser) return null;
 
     return (
-        <AppBar position="static" sx={{ bgcolor: "gray" }}>
+        <AppBar position="static" sx={{ bgcolor: '#7AB2B2', mb: 3 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                    <WineBarIcon
+                        sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+                    />
+                    <Link to="/">
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            DRINKING GAME
+                        </Typography>
+                    </Link>
+                    <Box
                         sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            flexGrow: 1,
+                            display: { xs: 'flex', md: 'none' },
                         }}
                     >
-                        DRINKING GAME
-                    </Typography>
-
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -106,63 +118,76 @@ function Navbar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem
+                                    component={Link}
+                                    to={page.link}
+                                    key={page.id}
+                                    onClick={handleCloseNavMenu}
+                                >
+                                    <Typography textAlign="center">
+                                        {page.title}
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                    <WineBarIcon
+                        sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+                    />
+                    <Link to="/">
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            DRINKING GAME
+                        </Typography>
+                    </Link>
+                    <Box
                         sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            display: { xs: 'none', md: 'flex' },
                         }}
                     >
-                        DRINKING GAME
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                component = {Link}
+                                to={page.link}
+                                key={page.id}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {page.title}
                             </Button>
                         ))}
                     </Box>
-                    {
-                        (authUser != null && authUser.roleId == 1) ?
-                        (
-                            <Box sx={{ flexGrow: 0 , mx: 1}} >
-                                <Tooltip title="Admin settings">
-                                    <IconButton sx={{ p: 0 }}>
-                                        <AdminPanelSettingsIcon
-                                            style={{ color: 'white' }}
-                                        />
-                                    </IconButton>
-                                </Tooltip>
-                            </Box>
-                        ) :
-                        null
-                    }
-                    <Box sx={{ flexGrow: 0 , ml:1 }}>
+                    {authUser != null && authUser.roleId == 1 ? (
+                        <Box sx={{ flexGrow: 0, mx: 1 }}>
+                            <Tooltip title="Admin settings">
+                                <IconButton sx={{ p: 0 }}>
+                                    <AdminPanelSettingsIcon
+                                        style={{ color: 'white' }}
+                                    />
+                                </IconButton>
+                            </Tooltip>
+                        </Box>
+                    ) : null}
+                    <Box sx={{ flexGrow: 0, ml: 1 }}>
                         <Tooltip title="Account settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <AccountCircle
-                                    style={{ color: 'white' }}
-                                />
+                            <IconButton
+                                onClick={handleOpenUserMenu}
+                                sx={{ p: 0 }}
+                            >
+                                <AccountCircle sx={{ color: 'white' }} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -181,27 +206,52 @@ function Navbar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {
-                                authUser != null ?
-                                    (
-                                        [
-                                            <MenuItem key="profile" onClick={handleCloseUserMenu}>
-                                                <Link to="/profile" ><Typography textAlign="center">Profile</Typography></Link>
-                                            </MenuItem>,
-                                            <MenuItem key="logout" onClick={handleCloseUserMenu}>
-                                                <Typography textAlign="center" onClick={logout}>Logout</Typography>
-                                            </MenuItem>
-                                        ]) :
-                                    (
-                                        [
-                                            <MenuItem key="login" onClick={handleCloseUserMenu}>
-                                                <Link to="/login"><Typography textAlign="center">Sign In</Typography></Link>
-                                            </MenuItem>,
-                                            <MenuItem key="register" onClick={handleCloseUserMenu}>
-                                                <Link to="/register"><Typography textAlign="center">Sign Up</Typography></Link>
-                                            </MenuItem>
-                                        ])
-                            }
+                            {authUser != null
+                                ? [
+                                      <MenuItem
+                                          component={Link}
+                                          to="/profile"
+                                          key="profile"
+                                          onClick={handleCloseUserMenu}
+                                      >
+                                          <Typography textAlign="center">
+                                              Profile
+                                          </Typography>
+                                      </MenuItem>,
+                                      <MenuItem
+                                          key="logout"
+                                          onClick={handleCloseUserMenu}
+                                      >
+                                          <Typography
+                                              textAlign="center"
+                                              onClick={logout}
+                                          >
+                                              Logout
+                                          </Typography>
+                                      </MenuItem>,
+                                  ]
+                                : [
+                                      <MenuItem
+                                          component={Link}
+                                          to="/login"
+                                          key="login"
+                                          onClick={handleCloseUserMenu}
+                                      >
+                                          <Typography textAlign="center">
+                                              Sign In
+                                          </Typography>
+                                      </MenuItem>,
+                                      <MenuItem
+                                          component={Link}
+                                          to="/register"
+                                          key="register"
+                                          onClick={handleCloseUserMenu}
+                                      >
+                                          <Typography textAlign="center">
+                                              Sign Up
+                                          </Typography>
+                                      </MenuItem>,
+                                  ]}
                         </Menu>
                     </Box>
                 </Toolbar>

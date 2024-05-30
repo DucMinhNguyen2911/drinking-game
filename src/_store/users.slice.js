@@ -20,7 +20,7 @@ export const usersReducer = slice.reducer;
 function createInitialState() {
     return {
         users: {},
-    }
+    };
 }
 
 function createExtraActions() {
@@ -54,5 +54,5 @@ function createExtraReducers() {
                     state.users = { error: action.error };
                 });
         }
-    }
+    };
 }

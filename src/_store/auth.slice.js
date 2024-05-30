@@ -22,13 +22,13 @@ function createInitialState() {
     return {
         // initialize state from local storage to enable user to stay logged in
         user: JSON.parse(localStorage.getItem('user')),
-        error: null
-    }
+        error: null,
+    };
 }
 
 function createReducers() {
     return {
-        logout
+        logout,
     };
 
     function logout(state) {
@@ -42,13 +42,23 @@ function createExtraActions() {
     const baseUrl = `${process.env.REACT_APP_API_URL}/users`;
 
     return {
-        login: login()
+        login: login(),
     };
 
     function login() {
         return createAsyncThunk(
             `${name}/login`,
-            async ({ userNameOrEmail, password }) => await fetchWrapper.post(`${baseUrl}/authenticate`, { userNameOrEmail, password })
+            async ({ userNameOrEmail, password }, { rejectWithValue }) => {
+                try {
+                    const response = await fetchWrapper.post(
+                        `${baseUrl}/authenticate`,
+                        { userNameOrEmail, password }
+                    );
+                    return response.data;
+                } catch (error) {
+                    return rejectWithValue(error);
+                }
+            }
         );
     }
 }
@@ -64,19 +74,21 @@ function createExtraReducers() {
                     state.error = null;
                 })
                 .addCase(fulfilled, (state, action) => {
-                    const user = action.payload.data;
+                    const user = action.payload;
 
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('user', JSON.stringify(user));
                     state.user = user;
 
                     // get return url from location state or default to home page
-                    const { from } = history.location.state || { from: { pathname: '/' } };
+                    const { from } = history.location.state || {
+                        from: { pathname: '/' },
+                    };
                     history.navigate(from);
                 })
                 .addCase(rejected, (state, action) => {
-                    state.error = action.error;
+                    state.error = action.payload;
                 });
         }
-    }
+    };
 }

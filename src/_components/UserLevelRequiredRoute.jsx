@@ -2,16 +2,14 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { history } from '../_helpers';
 
-export { UnauthenticatedRoute };
+export { UserLevelRequiredRoute };
 
-function UnauthenticatedRoute({ children }) {
+function UserLevelRequiredRoute({ children , userLevelRequired }) {
     const { user: authUser } = useSelector((x) => x.auth);
 
-    if (authUser) {
-        // logged in so redirect to previous page
+    if (authUser.userLevel < userLevelRequired) {
         return <Navigate to="/" state={{ from: history.location }} />;
     }
 
-    // unauthorized so return child components
     return children;
 }
