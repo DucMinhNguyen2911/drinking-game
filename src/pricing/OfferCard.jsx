@@ -10,22 +10,26 @@ export { OfferCard };
 function OfferCard(props) {
     return (
         <Box sx={{ width: 300 }}>
-            <Card variant="outlined">
-                <Box sx={{ height: 400, bgcolor: '#7AB2B2' }}>
+            <Card
+                sx={{
+                    borderRadius: '20px',
+                }}
+            >
+                <Box sx={{ height: 400, bgcolor: '#52057B' }}>
                     <CardContent>
                         <Box sx={{ height: 250 }}>
                             <Typography
                                 variant="h3"
-                                color="text.primary"
+                                color="white"
                                 gutterBottom
                                 align="center"
                             >
                                 {props.title}
                             </Typography>
-                            <Box sx={{ height: 60 }}>
+                            <Box sx={{ height: 80 }}>
                                 <Typography
                                     variant="h7"
-                                    color="text.secondary"
+                                    color="white"
                                     component="div"
                                     align="center"
                                 >
@@ -35,7 +39,7 @@ function OfferCard(props) {
                             <Typography
                                 fontSize={40}
                                 align="center"
-                                color="text.primary"
+                                color="white"
                             >
                                 {props.price}
                             </Typography>
@@ -44,7 +48,7 @@ function OfferCard(props) {
                                 align="center"
                                 component="div"
                                 gutterBottom
-                                color="text.secondary"
+                                color="white"
                             >
                                 {props.priceDescription}
                             </Typography>
@@ -57,13 +61,20 @@ function OfferCard(props) {
                                 sx={{ display: 'flex', alignItems: 'center' }}
                             >
                                 <CheckIcon fontSize="small" color="success" />
-                                <span>{perk}</span>
+                                <Box component={'span'} sx={{ color: 'white' }}>
+                                    {perk}
+                                </Box>
                             </Typography>
                         ))}
                     </CardContent>
                 </Box>
-                <CardActions sx={{ bgcolor: '#EEF7FF' }}>
-                    <Button size="small">Get started</Button>
+                <CardActions sx={{ bgcolor: '#000000' }}>
+                    <Button
+                        size="small"
+                        sx={{ color: 'white', justifyContent: 'flex-start' }}
+                    >
+                        Bắt đầu
+                    </Button>
                 </CardActions>
             </Card>
         </Box>

@@ -28,7 +28,11 @@ function Register() {
         userName: Yup.string()
             .required('Username is required')
             .min(5, 'Must be more than 5 characters')
-            .max(10, 'Must be less than 10 characters'),
+            .max(10, 'Must be less than 10 characters')
+            .matches(
+                /^[a-z0-9]+$/,
+                'Only lowercase letters and numbers are allowed, with no spaces.'
+            ),
         password: Yup.string()
             .required('Password is required')
             .min(6, 'Must be more than 6 characters')
@@ -99,11 +103,11 @@ function Register() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: '#7AB2B2' }}>
+                <Avatar sx={{ m: 1, bgcolor: '#BC6FF1' }}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
+                <Typography component="h1" variant="h5" color={'#FFFFFF'}>
+                    Đăng ký
                 </Typography>
                 <Box
                     component="form"
@@ -118,7 +122,7 @@ function Register() {
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label="Họ"
                                 autoFocus
                                 {...register('firstName')}
                                 error={errors.firstName != null}
@@ -134,7 +138,7 @@ function Register() {
                                 required
                                 fullWidth
                                 id="lastName"
-                                label="Last Name"
+                                label="Tên"
                                 name="lastName"
                                 {...register('lastName')}
                                 error={errors.lastName != null}
@@ -150,7 +154,7 @@ function Register() {
                                 required
                                 fullWidth
                                 id="userName"
-                                label="Username"
+                                label="Tên người dùng"
                                 name="userName"
                                 {...register('userName')}
                                 error={errors.userName != null}
@@ -166,7 +170,7 @@ function Register() {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label="Địa chỉ email"
                                 name="email"
                                 {...register('email')}
                                 error={errors.email != null}
@@ -180,7 +184,7 @@ function Register() {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="Mật khẩu"
                                 type="password"
                                 id="password"
                                 {...register('password')}
@@ -197,10 +201,16 @@ function Register() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: '#000000',
+                            color: '#FFFFFF',
+                            ':hover': { bgcolor: '#1a1a1a' }
+                        }}
                         disabled={isSubmitting}
                     >
-                        Sign Up
+                        Đăng ký
                         {isSubmitting && (
                             <CircularProgress
                                 size={24}
@@ -224,7 +234,7 @@ function Register() {
                             justifyContent="center"
                         >
                             <RouterLink to="/login" variant="body2">
-                                Already have an account? Sign in
+                                Đã có tài khoản? Đăng nhập
                             </RouterLink>
                         </Grid>
                     </Grid>

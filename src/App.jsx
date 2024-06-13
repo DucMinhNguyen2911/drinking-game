@@ -29,12 +29,73 @@ const defaultTheme = createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: '#CDE8E5',
+                    backgroundColor: '#892CDC',
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#FFFFFF',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#BC6FF1',
+                    },
+                    '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#b8b8b8',
+                    },
+                },
+            },
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: '#FFFFFF',
+                    '&.Mui-disabled': {
+                        color: '#b8b8b8',
+                    },
+                    '&.Mui-focused': {
+                        color: '#BC6FF1',
+                    },
+                },
+            },
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                input: {
+                    color: '#FFFFFF',
+                    '&.Mui-disabled': {
+                        color: '#b8b8b8',
+                    },
+                },
+            },
+        },
+        MuiStepLabel: {
+            styleOverrides: {
+                label: {
+                    color: 'white',
+                    '&.Mui-active': {
+                        color: 'white',
+                    },
+                    '&.Mui-completed': {
+                        color: 'white',
+                    },
+                },
+            },
+        },
+        MuiStepIcon: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-completed': {
+                        color: 'black',
+                    },
                 },
             },
         },
     },
 });
+
 function App() {
     history.navigate = useNavigate();
     history.location = useLocation();
@@ -47,7 +108,7 @@ function App() {
                 <Container
                     component="main"
                     maxWidth="lg"
-                    sx={{ bgcolor: '#CDE8E5', minHeight: '100vh' }}
+                    sx={{ bgcolor: '#892CDC', minHeight: '100vh' }}
                 >
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -88,7 +149,9 @@ function App() {
                             path="/sets/ai-generated"
                             element={
                                 <AuthenticatedRoute>
-                                    <UserLevelRequiredRoute userLevelRequired={2}>
+                                    <UserLevelRequiredRoute
+                                        userLevelRequired={2}
+                                    >
                                         <AICards />
                                     </UserLevelRequiredRoute>
                                 </AuthenticatedRoute>
@@ -98,7 +161,9 @@ function App() {
                             path="/sets/create"
                             element={
                                 <AuthenticatedRoute>
-                                    <UserLevelRequiredRoute userLevelRequired={2}>
+                                    <UserLevelRequiredRoute
+                                        userLevelRequired={2}
+                                    >
                                         <CreateSets />
                                     </UserLevelRequiredRoute>
                                 </AuthenticatedRoute>
@@ -108,7 +173,9 @@ function App() {
                             path="/sets/:setId/edit"
                             element={
                                 <AuthenticatedRoute>
-                                    <UserLevelRequiredRoute userLevelRequired={2}>
+                                    <UserLevelRequiredRoute
+                                        userLevelRequired={2}
+                                    >
                                         <EditSet />
                                     </UserLevelRequiredRoute>
                                 </AuthenticatedRoute>

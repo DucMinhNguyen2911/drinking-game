@@ -1,13 +1,19 @@
 //import { userActions } from '_store';
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo1.png';
 export { Home };
 
 function Home() {
     document.title = 'Drinking Game';
     return (
-        <Container maxWidth="xs" sx={{ mt: 10 }}>
-            <Box color="#4D869C" sx={{ mb: 5 }}>
+        <Container maxWidth="xs" sx={{ mt: 3 }}>
+            <Box
+                sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}
+            >
+                <img src={logo} alt="Logo" style={{ height: '60px' }} />
+            </Box>
+            <Box color="#FFFFFF" sx={{ mb: 5, mt: 5 }}>
                 <Typography
                     variant="h1"
                     fontSize="37px"
@@ -16,7 +22,7 @@ function Home() {
                     textAlign={'center'}
                     sx={{ mb: 3 }}
                 >
-                    Online Drinking Game
+                    Trò chơi uống rượu trực tuyến
                 </Typography>
                 <Typography
                     variant="h2"
@@ -26,12 +32,13 @@ function Home() {
                     textAlign={'center'}
                     sx={{ mb: 2 }}
                 >
-                    The game is simple:
+                    Trò chơi rất đơn giản:
                 </Typography>
                 <Typography gutterBottom textAlign={'center'}>
-                    Choose the set, flip the card, do what the card says, and press 'Done' to
-                    score a point. If you're not up for it, take a drink and
-                    press 'Pass' to pass the turn to the next player.
+                    Chọn bộ bài, lật lá bài, làm theo những gì lá bài yêu cầu,
+                    và nhấn 'Hoàn thành' để ghi một điểm. Nếu bạn không muốn
+                    thực hiện, hãy uống một ly và nhấn 'Bỏ qua' để chuyển lượt
+                    cho người chơi tiếp theo.
                 </Typography>
             </Box>
             <Box
@@ -47,11 +54,11 @@ function Home() {
                     variant="contained"
                     size="large"
                     sx={{
-                        bgcolor: '#4D869C',
-                        ':hover': { bgcolor: '#7AB2B2' },
+                        bgcolor: '#000000',
+                        ':hover': { bgcolor: '#1a1a1a' },
                     }}
                 >
-                    Let's get drunk
+                    Hãy cùng say nào
                 </Button>
             </Box>
         </Container>

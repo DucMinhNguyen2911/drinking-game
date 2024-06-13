@@ -8,7 +8,7 @@ import {
     Container,
     Grid,
     TextField,
-    Typography
+    Typography,
 } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { useState } from 'react';
@@ -59,7 +59,7 @@ function CreateSets() {
                         showNotification(message, 'error');
                     });
                 }
-                history.navigate("/sets");
+                history.navigate('/sets');
             })
             .catch((errors) => {
                 if (errors instanceof TypeError) {
@@ -69,7 +69,7 @@ function CreateSets() {
                         showNotification(error, 'error');
                     });
                 }
-                history.navigate("/sets");
+                history.navigate('/sets');
             });
     };
 
@@ -83,11 +83,11 @@ function CreateSets() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: '#7AB2B2' }}>
+                <Avatar sx={{ m: 1, bgcolor: '#BC6FF1' }}>
                     <PlaylistAdd sx={{ color: 'white' }} />
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Create a new personal set
+                <Typography component="h1" variant="h5" color={'#FFFFFF'}>
+                    Tạo một bộ bài cá nhân mới
                 </Typography>
                 <Box
                     component="form"
@@ -102,7 +102,7 @@ function CreateSets() {
                                 required
                                 fullWidth
                                 id="setName"
-                                label="Name"
+                                label="Tên bộ bài"
                                 name="setName"
                                 value={inputSetName}
                                 onChange={handleInputSetNameChange}
@@ -113,7 +113,7 @@ function CreateSets() {
                                 fullWidth
                                 required
                                 id="setDescription"
-                                label="Description"
+                                label="Miêu tả"
                                 name="setDescription"
                                 value={inputSetDescription}
                                 onChange={handleInputSetDescriptionChange}
@@ -131,10 +131,15 @@ function CreateSets() {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 2 }}
+                                sx={{
+                                    mt: 2,
+                                    bgcolor: '#FFFFFF',
+                                    color: '#000000',
+                                    ':hover': { bgcolor: '#fafafa' },
+                                }}
                                 disabled={isSubmitting}
                             >
-                                Create
+                                Tạo
                                 {isSubmitting && (
                                     <CircularProgress
                                         size={24}
@@ -152,14 +157,18 @@ function CreateSets() {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Button
-                                component = {Link}
-                                to = "/sets"
+                                component={Link}
+                                to="/sets"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 2 }}
-                                color="error"
+                                sx={{
+                                    mt: 2,
+                                    bgcolor: '#000000',
+                                    color: '#FFFFFF',
+                                    ':hover': { bgcolor: '#1a1a1a' },
+                                }}
                             >
-                                Cancel
+                                Hủy
                             </Button>
                         </Grid>
                     </Grid>

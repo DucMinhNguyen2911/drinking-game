@@ -36,7 +36,7 @@ function Profile() {
     const [inputFirstName, setInputFirstName] = useState('');
     const [inputLastName, setInputLastName] = useState('');
 
-    const levels = ['Level 1', 'Level 2', 'Level 3'];
+    const levels = ['Cấp 1', 'Cấp 2', 'Cấp 3'];
     const handleInputFirstNameChange = (event) => {
         setInputFirstName(event.target.value);
     };
@@ -54,7 +54,7 @@ function Profile() {
             setInputLastName(response.data.lastName);
         });
     }
-    
+
     useEffect(() => {
         onGet();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,11 +97,11 @@ function Profile() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: '#7AB2B2' }}>
+                <Avatar sx={{ m: 1, bgcolor: '#BC6FF1' }}>
                     <AccountCircle sx={{ color: 'white' }} />
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Me
+                <Typography component="h1" variant="h5" color={'#FFFFFF'}>
+                    Tôi
                 </Typography>
                 <Box sx={{ width: '100%', mt: 2 }}>
                     <Stepper activeStep={userLevel} alternativeLabel>
@@ -124,7 +124,7 @@ function Profile() {
                                 disabled
                                 fullWidth
                                 id="userName"
-                                label="Username"
+                                label="Tên người dùng"
                                 name="userName"
                                 value={inputUserName}
                             />
@@ -134,7 +134,7 @@ function Profile() {
                                 disabled
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label="Địa chỉ email"
                                 name="email"
                                 value={inputEmail}
                             />
@@ -145,7 +145,7 @@ function Profile() {
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label="Họ"
                                 autoFocus
                                 value={inputFirstName}
                                 onChange={handleInputFirstNameChange}
@@ -156,7 +156,7 @@ function Profile() {
                                 required
                                 fullWidth
                                 id="lastName"
-                                label="Last Name"
+                                label="Tên"
                                 name="lastName"
                                 value={inputLastName}
                                 onChange={handleInputLastNameChange}
@@ -174,10 +174,15 @@ function Profile() {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 2 }}
+                                sx={{
+                                    mt: 2,
+                                    bgcolor: '#FFFFFF',
+                                    color: '#000000',
+                                    ':hover': { bgcolor: '#fafafa' },
+                                }}
                                 disabled={isSubmitting}
                             >
-                                Update
+                                Cập nhật
                                 {isSubmitting && (
                                     <CircularProgress
                                         size={24}
@@ -198,11 +203,16 @@ function Profile() {
                                 type="button"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 2 }}
+                                sx={{
+                                    mt: 2,
+                                    bgcolor: '#000000',
+                                    color: '#FFFFFF',
+                                    ':hover': { bgcolor: '#1a1a1a' },
+                                }}
                                 onClick={logout}
                                 color="error"
                             >
-                                Logout
+                                Đăng xuất
                             </Button>
                         </Grid>
                     </Grid>
@@ -217,7 +227,7 @@ function Profile() {
                             justifyContent="center"
                         >
                             <RouterLink to="/profile/password" variant="body2">
-                                Change your password
+                                Thay đổi mật khẩu
                             </RouterLink>
                         </Grid>
                     </Grid>

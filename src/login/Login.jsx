@@ -67,24 +67,26 @@ function Login() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: '#7AB2B2' }}>
+                <Avatar sx={{ m: 1, bgcolor: '#BC6FF1' }}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign in
+                <Typography component="h1" variant="h5" color={'#FFFFFF'}>
+                    Đăng nhập
                 </Typography>
                 <Box
                     component="form"
                     onSubmit={handleSubmit(onSubmit)}
                     noValidate
-                    sx={{ mt: 1 }}
+                    sx={{
+                        mt: 1,
+                    }}
                 >
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         id="userNameOrEmail"
-                        label="Username or Email"
+                        label="Tên người dùng hoặc Email"
                         name="userNameOrEmail"
                         autoComplete="userNameOrEmail"
                         autoFocus
@@ -101,7 +103,7 @@ function Login() {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Mật khẩu"
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -115,10 +117,16 @@ function Login() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: '#000000',
+                            color: '#FFFFFF',
+                            ':hover': { bgcolor: '#1a1a1a' }
+                        }}
                         disabled={isSubmitting}
                     >
-                        Sign In
+                        Đăng nhập
                         {isSubmitting && (
                             <CircularProgress
                                 size={24}
@@ -143,7 +151,7 @@ function Login() {
                             justifyContent="center"
                         >
                             <RouterLink to="/register" variant="body2">
-                                {"Don't have an account? Sign Up"}
+                                {'Chưa có tài khoản? Đăng ký'}
                             </RouterLink>
                         </Grid>
                     </Grid>

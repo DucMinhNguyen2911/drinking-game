@@ -1,7 +1,6 @@
-import { AccountCircle } from '@mui/icons-material';
+import { AccountCircle, Payment, SportsEsports } from '@mui/icons-material';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuIcon from '@mui/icons-material/Menu';
-import WineBarIcon from '@mui/icons-material/WineBar';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,16 +15,20 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { authActions } from '../_store';
+import logo from '../assets/logo1.png';
+import { Stack } from '@mui/material';
 export { Navbar };
 let pages = [
     {
         id: 1,
-        title: 'Play',
+        icon: <SportsEsports />,
+        title: 'Chơi',
         link: '/sets',
     },
     {
         id: 2,
-        title: 'Pricing',
+        icon: <Payment />,
+        title: 'Phí',
         link: '/pricing',
     },
 ];
@@ -60,11 +63,21 @@ function Navbar() {
     //if (!authUser) return null;
 
     return (
-        <AppBar position="static" sx={{ bgcolor: '#7AB2B2', mb: 3 }}>
+        <AppBar position="static" sx={{ bgcolor: '#52057B', mb: 3 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <WineBarIcon
+                    {/* <WineBarIcon
                         sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+                    /> */}
+                    <Box
+                        component={'img'}
+                        src={logo}
+                        alt="Logo"
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            mr: 1,
+                            height: '30px',
+                        }}
                     />
                     <Link to="/">
                         <Typography
@@ -131,8 +144,15 @@ function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <WineBarIcon
-                        sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+                    <Box
+                        component={'img'}
+                        src={logo}
+                        alt="Logo"
+                        sx={{
+                            display: { xs: 'flex', md: 'none' },
+                            mr: 1,
+                            height: '30px',
+                        }}
                     />
                     <Link to="/">
                         <Typography
@@ -160,13 +180,22 @@ function Navbar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                component = {Link}
+                                component={Link}
                                 to={page.link}
                                 key={page.id}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page.title}
+                                <Stack
+                                    alignItems="center"
+                                    direction="row"
+                                    gap={1}
+                                >
+                                    {page.icon}
+                                    <Typography>
+                                        {page.title}
+                                    </Typography>
+                                </Stack>
                             </Button>
                         ))}
                     </Box>
@@ -215,7 +244,7 @@ function Navbar() {
                                           onClick={handleCloseUserMenu}
                                       >
                                           <Typography textAlign="center">
-                                              Profile
+                                              Tài khoản
                                           </Typography>
                                       </MenuItem>,
                                       <MenuItem
@@ -226,7 +255,7 @@ function Navbar() {
                                               textAlign="center"
                                               onClick={logout}
                                           >
-                                              Logout
+                                              Đăng xuất
                                           </Typography>
                                       </MenuItem>,
                                   ]
@@ -238,7 +267,7 @@ function Navbar() {
                                           onClick={handleCloseUserMenu}
                                       >
                                           <Typography textAlign="center">
-                                              Sign In
+                                              Đăng nhập
                                           </Typography>
                                       </MenuItem>,
                                       <MenuItem
@@ -248,7 +277,7 @@ function Navbar() {
                                           onClick={handleCloseUserMenu}
                                       >
                                           <Typography textAlign="center">
-                                              Sign Up
+                                              Đăng ký
                                           </Typography>
                                       </MenuItem>,
                                   ]}

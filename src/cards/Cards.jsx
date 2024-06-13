@@ -11,8 +11,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchWrapper, history } from '../_helpers';
-import './cards.css';
 import { addNotification } from '../_store';
+import logo from '../assets/logo1.png';
+import './cards.css';
 
 export { Cards };
 
@@ -33,7 +34,7 @@ const modalStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: '#EEF7FF',
+    bgcolor: '#52057B',
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
@@ -101,7 +102,7 @@ function Cards() {
                         showNotification(error, 'error');
                     });
                 }
-                history.navigate("/sets");
+                history.navigate('/sets');
             });
     }
 
@@ -125,7 +126,19 @@ function Cards() {
                                     cards[currentIndex].text}
                             </Typography>
                         </Box>
-                        <Box className="flip-card-back"></Box>
+                        <Box className="flip-card-back">
+                            <Box
+                                component={'img'}
+                                src={logo}
+                                alt="Logo"
+                                className={`${flipped ? 'logo-breath' : ''}`}
+                                sx={{
+                                    display: { xs: 'none', md: 'flex' },
+                                    mr: 1,
+                                    height: '70px',
+                                }}
+                            />
+                        </Box>
                     </Box>
                 </Box>
                 <Grid container columnSpacing={2} rowSpacing={2} sx={{ my: 2 }}>
@@ -135,14 +148,14 @@ function Cards() {
                             fullWidth
                             variant="contained"
                             sx={{
-                                bgcolor: '#EEF7FF',
-                                color: '#4D869C',
-                                ':hover': { bgcolor: '#D9E2EA' },
+                                bgcolor: '#FFFFFF',
+                                color: '#000000',
+                                ':hover': { bgcolor: '#fafafa' },
                             }}
                             onClick={handleNext}
                             disabled={flipped}
                         >
-                            Pass
+                            Bỏ qua
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -151,14 +164,14 @@ function Cards() {
                             fullWidth
                             variant="contained"
                             sx={{
-                                bgcolor: '#4D869C',
-                                color: '#EEF7FF',
-                                ':hover': { bgcolor: '#5695AE' },
+                                bgcolor: '#000000',
+                                color: '#FFFFFF',
+                                ':hover': { bgcolor: '#1a1a1a' },
                             }}
                             onClick={handleNext}
                             disabled={flipped}
                         >
-                            Done
+                            Xong
                         </Button>
                     </Grid>
                 </Grid>
@@ -170,8 +183,9 @@ function Cards() {
             >
                 <Fade in={showModal}>
                     <Box sx={modalStyle}>
-                        <Typography variant="h5" gutterBottom color="#4D869C">
-                            All cards have been flipped in this set. Do you want to play again?
+                        <Typography variant="h5" gutterBottom color="#FFFFFF">
+                            Tất cả các lá bài đã được lật trong bộ này. Bạn muốn
+                            chơi lại không?
                         </Typography>
                         <Grid
                             container
@@ -187,12 +201,12 @@ function Cards() {
                                     fullWidth
                                     sx={{
                                         height: '100%',
-                                        bgcolor: '#4D869C',
-                                        color: '#EEF7FF',
-                                        ':hover': { bgcolor: '#5695AE' },
+                                        bgcolor: '#FFFFFF',
+                                        color: '#000000',
+                                        ':hover': { bgcolor: '#fafafa' },
                                     }}
                                 >
-                                    Yes
+                                    Có
                                 </Button>
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -204,12 +218,12 @@ function Cards() {
                                     fullWidth
                                     sx={{
                                         height: '100%',
-                                        bgcolor: '#EEF7FF',
-                                        color: '#4D869C',
-                                        ':hover': { bgcolor: '#D9E2EA' },
+                                        bgcolor: '#000000',
+                                        color: '#FFFFFF',
+                                        ':hover': { bgcolor: '#1a1a1a' },
                                     }}
                                 >
-                                    Choose another set
+                                    Chọn một bộ khác
                                 </Button>
                             </Grid>
                         </Grid>

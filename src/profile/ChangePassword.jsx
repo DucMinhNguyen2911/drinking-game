@@ -80,11 +80,11 @@ function ChangePassword() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: '#7AB2B2' }}>
+                <Avatar sx={{ m: 1, bgcolor: '#BC6FF1' }}>
                     <Password />
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Password
+                <Typography component="h1" variant="h5" color={'#FFFFFF'}>
+                    Mật khẩu
                 </Typography>
                 <Box
                     component="form"
@@ -97,7 +97,7 @@ function ChangePassword() {
                             <TextField
                                 fullWidth
                                 id="oldPassword"
-                                label="Old password"
+                                label="Mật khẩu cũ"
                                 name="oldPassword"
                                 type="password"
                                 autoFocus
@@ -109,7 +109,7 @@ function ChangePassword() {
                             <TextField
                                 fullWidth
                                 id="newPassword"
-                                label="New password"
+                                label="Mật khẩu mới"
                                 name="newPassword"
                                 type="password"
                                 value={inputNewPassword}
@@ -126,10 +126,16 @@ function ChangePassword() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 2, mb: 2 }}
+                        sx={{
+                            mt: 2,
+                            mb: 2,
+                            bgcolor: '#000000',
+                            color: '#FFFFFF',
+                            ':hover': { bgcolor: '#1a1a1a' },
+                        }}
                         disabled={isSubmitting}
                     >
-                        Change Password
+                        Đổi mật khẩu
                         {isSubmitting && (
                             <CircularProgress
                                 size={24}
@@ -154,7 +160,7 @@ function ChangePassword() {
                             justifyContent="center"
                         >
                             <RouterLink to="/profile" variant="body2">
-                                Go back
+                                Quay lại
                             </RouterLink>
                         </Grid>
                     </Grid>
